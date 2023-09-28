@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  php-apache:
+    build:
+      context: files
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    links:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - "./src:/var/www/html"
+      - "./static:/var/www/html/static"
+      - "./docker/nginx/conf.d:/etc/nginx/conf.d"
+    links:
+      - php-apache
+
+  mysql:
+    image: mysql:8.1
+    environment:
+      MYSQL_USERNAME: user
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: appDB
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+

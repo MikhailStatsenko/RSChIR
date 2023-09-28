@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS appDB;
+CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password';
+GRANT SELECT, UPDATE, INSERT, DELETE ON appDB.* TO 'user'@'%';
+FLUSH PRIVILEGES;
+
+USE appDB;
+
+CREATE TABLE IF NOT EXISTS employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    phone_number VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS task (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    employee_id INT NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employee(id)
+);

@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+   db:
+      image: mysql
+      environment:
+         MYSQL_USERNAME: user
+         MYSQL_ROOT_PASSWORD: password
+         MYSQL_DATABASE: appDB
+      volumes:
+         - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      networks:
+         - mynetwork
+      depends_on:
+         - server
+   server:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      ports:
+         - '8080:80'
+      volumes:
+         - ./server:/var/www/html
+      networks:
+         - mynetwork
+
+networks:
+   mynetwork:

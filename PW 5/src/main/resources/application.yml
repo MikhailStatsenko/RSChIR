@@ -4,3 +4,4 @@ spring:
     username: postgres
     password: qwerty
     driver-class-name: org.postgresql.Driver
+

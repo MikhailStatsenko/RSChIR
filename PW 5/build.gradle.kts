@@ -40,3 +40,4 @@ tasks.bootJar {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+

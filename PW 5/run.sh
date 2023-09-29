@@ -7,3 +7,4 @@ rm -f /build/libs/marketplace.jar
 cd ./docker
 
 docker-compose up -d
+

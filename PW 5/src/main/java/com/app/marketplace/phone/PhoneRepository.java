@@ -1,9 +1,10 @@
 package com.app.marketplace.phone;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-
-public interface PhoneRepository extends CrudRepository<Phone, Long> {
+@Repository
+public interface PhoneRepository extends JpaRepository<Phone, Long> {
 
 }
 

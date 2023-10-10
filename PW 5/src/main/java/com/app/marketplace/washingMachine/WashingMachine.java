@@ -1,18 +1,17 @@
 package com.app.marketplace.washingMachine;
 
+import com.app.marketplace.product.Product;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Table("washing_machines")
-public class WashingMachine {
-    @Id
-    private Long id;
+@Entity
+@DiscriminatorValue("WashingMachine")
+public class WashingMachine extends Product {
     private String manufacturer;
     private int tankVolume;
-    private String sellerNumber;
-    private String productType;
-    private double price;
-    private String title;
 }
+

@@ -1,18 +1,16 @@
 package com.app.marketplace.book;
 
+import com.app.marketplace.product.Product;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Table("books")
-public class Book {
-    @Id
-    private Long id;
+@Entity
+@DiscriminatorValue("Book")
+public class Book extends Product {
     private String author;
-    private String sellerNumber;
-    private String productType;
-    private double price;
-    private String title;
 }
 

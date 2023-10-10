@@ -16,7 +16,7 @@ public class WashingMachineService {
     }
 
     public List<WashingMachine> getAllWashingMachines() {
-        return (List<WashingMachine>) washingMachineRepository.findAll();
+        return washingMachineRepository.findAll();
     }
 
     public Optional<WashingMachine> getWashingMachineById(Long id) {
@@ -38,6 +38,9 @@ public class WashingMachineService {
 
         WashingMachine dbWashingMachine = washingMachineOptional.get();
 
+        if (updatedWashingMachine.getQuantity() > 0)
+            dbWashingMachine.setQuantity(updatedWashingMachine.getQuantity());
+
         if (updatedWashingMachine.getManufacturer() != null && !updatedWashingMachine.getManufacturer().isBlank())
             dbWashingMachine.setManufacturer(updatedWashingMachine.getManufacturer());
 
@@ -49,9 +52,6 @@ public class WashingMachineService {
 
         if (updatedWashingMachine.getPrice() > 0)
             dbWashingMachine.setPrice(updatedWashingMachine.getPrice());
-
-        if (updatedWashingMachine.getProductType() != null && !updatedWashingMachine.getProductType().isBlank())
-            dbWashingMachine.setProductType(updatedWashingMachine.getProductType());
 
         if (updatedWashingMachine.getTitle() != null && !updatedWashingMachine.getTitle().isBlank())
             dbWashingMachine.setTitle(updatedWashingMachine.getTitle());

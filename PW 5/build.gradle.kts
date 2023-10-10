@@ -23,10 +23,11 @@ repositories {
 
 dependencies {
 	implementation("com.google.code.gson:gson:2.8.9")
-	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+	implementation("org.springframework.data:spring-data-jpa:3.1.4")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.flywaydb:flyway-core")
+//	implementation("org.flywaydb:flyway-core")
 	implementation("org.projectlombok:lombok:1.18.30")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	compileOnly("org.projectlombok:lombok:1.18.30")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok:1.18.30")

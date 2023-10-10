@@ -38,6 +38,9 @@ public class PhoneService {
 
         Phone dbPhone = phoneOptional.get();
 
+        if (updatedPhone.getQuantity() > 0)
+            dbPhone.setQuantity(updatedPhone.getQuantity());
+
         if (updatedPhone.getManufacturer() != null && !updatedPhone.getManufacturer().isBlank())
             dbPhone.setManufacturer(updatedPhone.getManufacturer());
 
@@ -49,9 +52,6 @@ public class PhoneService {
 
         if (updatedPhone.getPrice() > 0)
             dbPhone.setPrice(updatedPhone.getPrice());
-
-        if (updatedPhone.getProductType() != null && !updatedPhone.getProductType().isBlank())
-            dbPhone.setProductType(updatedPhone.getProductType());
 
         if (updatedPhone.getSellerNumber() != null && !updatedPhone.getSellerNumber().isBlank())
             dbPhone.setSellerNumber(updatedPhone.getSellerNumber());

@@ -16,7 +16,7 @@ public class BookService {
     }
 
     public List<Book> getAllBooks() {
-        return (List<Book>) bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Optional<Book> getBookById(Long id) {
@@ -38,6 +38,9 @@ public class BookService {
 
         Book dbBook = bookOptional.get();
 
+        if (updatedBook.getQuantity() > 0)
+            dbBook.setQuantity(updatedBook.getQuantity());
+
         if (updatedBook.getAuthor() != null && !updatedBook.getAuthor().isBlank())
             dbBook.setAuthor(updatedBook.getAuthor());
 
@@ -46,9 +49,6 @@ public class BookService {
 
         if (updatedBook.getTitle() != null && !updatedBook.getTitle().isBlank())
             dbBook.setTitle(updatedBook.getTitle());
-
-        if (updatedBook.getProductType() != null && !updatedBook.getProductType().isBlank())
-            dbBook.setProductType(updatedBook.getProductType());
 
         if (updatedBook.getSellerNumber() != null && !updatedBook.getSellerNumber().isBlank())
             dbBook.setSellerNumber(updatedBook.getSellerNumber());

@@ -26,7 +26,8 @@ public class CartController {
     private final ShoppingCartService shoppingCartService;
 
     public CartController(Gson gson, ClientService clientService,
-                          ProductService productService, CartItemService cartItemService, ShoppingCartService shoppingCartService) {
+                          ProductService productService, CartItemService cartItemService,
+                          ShoppingCartService shoppingCartService) {
         this.gson = gson;
         this.clientService = clientService;
         this.productService = productService;
@@ -92,3 +93,5 @@ public class CartController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such item in the cart"));
     }
 }
+
+

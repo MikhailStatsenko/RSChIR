@@ -22,10 +22,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllClients() {
+    public ResponseEntity<?> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         if (products.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(gson.toJson(products));
     }
 }
+
+

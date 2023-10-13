@@ -15,7 +15,7 @@ services:
 
   marketplace-app:
     build:
-      context: ./
+      context: Dockerfile-marketplace
     container_name: marketplace-app
     ports:
       - "8080:8080"
@@ -26,7 +26,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: qwerty
     volumes:
-      - ../build/libs/marketplace.jar:/app/marketplace.jar
+      - ../marketplace/build/libs/marketplace.jar:/app/marketplace.jar
 
   nginx:
     image: nginx:latest

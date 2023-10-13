@@ -1,10 +1,10 @@
 #!/bin/bash
 
-rm -f /build/libs/marketplace.jar
+rm -f /app/marketplace/build/libs/marketplace.jar
 
 ./gradlew build > /dev/null 2>&1
 
-cd ./docker
+cd ./app/docker
 
 docker-compose up -d
 

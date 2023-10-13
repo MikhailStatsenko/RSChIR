@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd ./docker
+cd ./app/docker
 
 docker-compose down

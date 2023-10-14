@@ -33,7 +33,7 @@ public class AuthConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userCredentialRepository.findByUsername(username)
+        return username -> userCredentialRepository.findByName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
     @Bean

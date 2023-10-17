@@ -1,6 +1,6 @@
 package com.authservice.repository;
 
-import com.authservice.entiry.UserCredential;
+import com.authservice.model.UserCredential;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

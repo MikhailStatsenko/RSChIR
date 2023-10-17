@@ -1,6 +1,6 @@
 package com.authservice.service;
 
-import com.authservice.entiry.UserCredential;
+import com.authservice.model.UserCredential;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;

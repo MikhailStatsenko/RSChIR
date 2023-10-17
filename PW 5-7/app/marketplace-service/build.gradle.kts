@@ -24,6 +24,7 @@ repositories {
 extra["springCloudVersion"] = "2022.0.4"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-aop")
 	implementation("com.google.code.gson:gson:2.8.9")
 	implementation("org.springframework.data:spring-data-jpa:3.1.4")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -34,6 +35,10 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok:1.18.30")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	implementation("io.jsonwebtoken:jjwt-api:0.12.2")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.2")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.2")
 }
 
 dependencyManagement {

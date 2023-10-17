@@ -1,5 +1,6 @@
 package com.app.marketplace.client;
 
+import com.app.marketplace.auth.RequiresRole;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class ClientController {
     }
 
     @GetMapping
+    @RequiresRole("ADMINISTRATOR")
     public ResponseEntity<?> getAllClients() {
         List<Client> clients = clientService.getAllClients();
         if (clients.isEmpty())
@@ -29,6 +31,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> getClientById(@PathVariable Long id) {
         Optional<Client> clientOptional = clientService.getClientById(id);
         if (clientOptional.isEmpty())
@@ -37,12 +40,14 @@ public class ClientController {
     }
 
     @PostMapping
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> addClient(@RequestBody Client client) {
         return ResponseEntity.ok(gson.toJson(clientService.saveClient(client)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updatePhone(@PathVariable Long id, @RequestBody Client client) {
+    @RequiresRole({"USER", "ADMINISTRATOR"})
+    public ResponseEntity<?> updateClient(@PathVariable Long id, @RequestBody Client client) {
         Optional<Client> clientOptional = clientService.updateClient(id, client);
         if (clientOptional.isEmpty())
             return ResponseEntity.notFound().build();
@@ -50,7 +55,8 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteWashingMachine(@PathVariable Long id) {
+    @RequiresRole("ADMINISTRATOR")
+    public ResponseEntity<String> deleteClient(@PathVariable Long id) {
         if (clientService.getClientById(id).isEmpty())
             return ResponseEntity.internalServerError().body("There is no such client");
 

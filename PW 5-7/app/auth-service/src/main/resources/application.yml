@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/auth
+    url: jdbc:postgresql://localhost:5432/marketplace
     username: postgres
     password: qwerty
     driver-class-name: org.postgresql.Driver

@@ -1,5 +1,6 @@
 package com.app.marketplace.cart;
 
+import com.app.marketplace.auth.RequiresRole;
 import com.app.marketplace.cart.cartitem.CartItem;
 import com.app.marketplace.cart.cartitem.CartItemService;
 import com.app.marketplace.cart.shoppingcart.ShoppingCart;
@@ -36,6 +37,7 @@ public class CartController {
     }
 
     @GetMapping("/{clientId}")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> getCart(@PathVariable Long clientId) {
         return clientService.getClientById(clientId)
                 .flatMap(shoppingCartService::getShoppingCartByClient)
@@ -44,6 +46,7 @@ public class CartController {
     }
 
     @PostMapping("/make-order/{clientId}")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> makeOrder(@PathVariable Long clientId) {
         return clientService.getClientById(clientId)
                 .map(client -> {
@@ -60,6 +63,7 @@ public class CartController {
     }
 
     @PostMapping("/add-to-cart")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> addToCart(@RequestBody AddToCartDTO info) {
         return clientService.getClientById(info.clientId())
                 .flatMap(client -> productService.getProductById(info.productId())
@@ -73,6 +77,7 @@ public class CartController {
     }
 
     @PatchMapping("/update_quantity")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> updateQuantity(@RequestBody UpdateQuantityDTO info) {
         return cartItemService.getById(info.cartItemId())
                 .filter(cartItem -> info.quantity() >= 0 && cartItem.getProduct().getQuantity() >= info.quantity())
@@ -84,6 +89,7 @@ public class CartController {
     }
 
     @DeleteMapping("/remove-from-cart/{cartItemId}")
+    @RequiresRole({"USER", "ADMINISTRATOR"})
     public ResponseEntity<?> removeFromCart(@PathVariable Long cartItemId) {
         return cartItemService.getById(cartItemId)
                 .map(cartItem -> {

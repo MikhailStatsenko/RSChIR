@@ -33,7 +33,7 @@ public class AuthConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userCredentialRepository.findByName(username)
+        return username -> userCredentialRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
     @Bean
@@ -66,7 +66,7 @@ public class AuthConfig {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(600))
+                .entryTtl(Duration.ofSeconds(60))
                 .disableCachingNullValues();
 
         return RedisCacheManager.builder(redisConnectionFactory)

@@ -2,10 +2,9 @@ package com.authservice.controller;
 
 import com.authservice.dto.AuthRequest;
 import com.authservice.dto.RegisterResponse;
-import com.authservice.entiry.UserCredential;
+import com.authservice.model.UserCredential;
 import com.authservice.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/token")
-    @Cacheable(value = "userAuthenticationCache", key = "#request.username")
+//    @Cacheable(value = "userAuthenticationCache", key = "#request.username")
     public String getToken(@RequestBody AuthRequest request) throws UserPrincipalNotFoundException {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.username(),

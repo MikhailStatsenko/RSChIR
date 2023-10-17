@@ -1,7 +1,7 @@
 package com.authservice.service;
 
-import com.authservice.entiry.Role;
-import com.authservice.entiry.UserCredential;
+import com.authservice.model.Role;
+import com.authservice.model.UserCredential;
 import com.authservice.repository.UserCredentialRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +21,11 @@ public class AuthService {
         credential.addRole(Role.USER);
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));
          return repository.save(credential);
+    }
+
+    public UserCredential updateUser(UserCredential credential) {
+        credential.setPassword(passwordEncoder.encode(credential.getPassword()));
+        return repository.save(credential);
     }
 
     public String generateToken(String username) throws UserPrincipalNotFoundException {

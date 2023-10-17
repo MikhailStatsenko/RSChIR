@@ -1,4 +1,4 @@
-package com.authservice.entiry;
+package com.authservice.model;
 
 public enum Role {
     USER,

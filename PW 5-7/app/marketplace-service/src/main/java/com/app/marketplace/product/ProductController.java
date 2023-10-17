@@ -1,5 +1,6 @@
 package com.app.marketplace.product;
 
+import com.app.marketplace.auth.RequiresRole;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @RequiresRole({"USER", "SELLER", "ADMINISTRATOR"})
     public ResponseEntity<?> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         if (products.isEmpty())

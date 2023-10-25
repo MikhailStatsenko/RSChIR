@@ -38,3 +38,5 @@ public class AuthServiceApplication implements CommandLineRunner {
 		authService.updateUser(admin);
 	}
 }
+
+

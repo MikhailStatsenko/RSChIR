@@ -48,3 +48,4 @@ public class AuthController {
         service.validateToken(token);
     }
 }
+

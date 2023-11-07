@@ -19,3 +19,6 @@ EXPOSE 8081
 
 CMD ["/app"]
 
+
+
+

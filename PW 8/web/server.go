@@ -18,7 +18,8 @@ type Server struct {
 	log           *logrus.Logger
 }
 
-func NewServer(port, cookieName string, cookieSecret []byte, cookieHandler cookiehandler.CookieHandler, log *logrus.Logger) *Server {
+func NewServer(port, cookieName string, cookieSecret []byte,
+	cookieHandler cookiehandler.CookieHandler, log *logrus.Logger) *Server {
 	return &Server{
 		Port:          port,
 		CookieName:    cookieName,

@@ -264,7 +264,6 @@ func updateFileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	db := client.Database("db")
-
 	fs, err := gridfs.NewBucket(db)
 	if err != nil {
 		http.Error(w, "Failed to create GridFS bucket", http.StatusInternalServerError)
@@ -275,10 +274,8 @@ func updateFileHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to delete the old file", http.StatusInternalServerError)
 		return
 	}
-
 	newFileID := fileID
 	newFilename := handler.Filename
-
 	uploadStream, err := fs.OpenUploadStreamWithID(newFileID, newFilename)
 	if err != nil {
 		http.Error(w, "Failed to open upload stream", http.StatusInternalServerError)
@@ -291,7 +288,6 @@ func updateFileHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to copy file to upload stream", http.StatusInternalServerError)
 		return
 	}
-
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("File updated successfully"))
 }
